@@ -46,6 +46,7 @@
     "typescript": "^2.4.1",
     "typings": "^1.4.0",
     "webpack": "^1.13.2",
+    "webpack-dashboard": "^0.4.0",
     "webpack-dev-server": "^1.16.1"
   }
 }

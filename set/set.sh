@@ -5,4 +5,4 @@ typings i
 echo -e "${GREEN}wait for install packages ... ${NC}"
 cnpm i
 echo -e "${GREEN}install success, wait for build ... ${NC}"
-webpack-dev-server --inline --hot --colors --progress --open
+webpack-dev-server --inline --quiet --hot --colors --progress --open

@@ -20,7 +20,6 @@ module.exports = {
             { test: /\.(eot|svg|ttf|woff|woff2|png)\w*/,loader: 'file'}
         ]
     },
-    // require 文件时可省略后缀 .js 和 .ts
     resolve: {
         extensions: ['', '.js', '.ts']
     },
@@ -29,6 +28,6 @@ module.exports = {
         historyApiFallback: true,
         hot: true,
         inline: true,
-        port: 9090 // 修改端口，一般默认是8080
+        port: 9090
     }
 };
