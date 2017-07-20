@@ -1,0 +1,15 @@
+// box config
+@mixin boxHeight($key: 20px) {
+	height: $key;
+	line-height: $key;
+}
+
+/*li base config*/ 
+@mixin _defaultLi($type: none) {
+	list-style-type: $type;
+}
+
+/*transition*/
+@mixin _transition($type, $times) {
+	transition: $type $times;
+}

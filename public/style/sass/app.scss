@@ -1,0 +1,50 @@
+@import 'variable';
+@import 'mixin';
+@import 'global';
+@import url(http://fonts.googlefonts.net/css?family=Ubuntu&subset=latin,latin-ext);
+
+.container{
+	#__ul{
+		background-color: $nav_bg;
+		@include boxHeight(40px);
+		li{
+			float: left;
+			width: 25%;
+			text-align: center;
+			@include _defaultLi();
+			@include _transition(background-color,1s);
+			&:hover{
+				&>a._reset{
+					color: $wh;
+				}
+				background-color: $bl;
+				@include _transition(background-color,1s);
+			}
+			i.fa{
+				margin-right: 10px;
+			}
+			&>a._reset{
+		    color: $bl;
+		    text-decoration: none;
+			}
+		}
+	}
+	&>head{
+		display: block;
+		#__title{
+			@include boxHeight(80px);
+			text-align: center;
+			background-color: $bl;
+			&>span{
+				color: $wh;
+				font:{
+					size: 40px;
+					family: 'Ubuntu', sans-serif;
+				}
+				letter-spacing: 5px;
+			}
+		}
+	}
+}
+
+@import 'login';

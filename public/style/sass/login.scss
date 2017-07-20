@@ -1,0 +1,44 @@
+#login{
+	margin: 20% auto;
+	width: 80%;
+	height: 400px;
+	text-align: center;
+	.input-item{
+		margin-bottom: 50px;
+		label{
+			>p{
+				font-size: 25px;
+				width: 100px;
+				@include boxHeight(40px);
+				margin: 10px auto;
+			}
+			>input{
+				padding-left: 10px;
+				width: 60%;
+				font:{
+					family: inherit;
+					size: 20px;
+				}
+				@include boxHeight(40px);
+				border: 1px solid #999;
+			}
+		}
+	}
+	button{
+		font:{
+			family: inherit;
+			size: 20px;
+		}
+		border-radius: 10px;
+		border: none;
+		padding: 10px 20px;
+		box-shadow: 3px 3px 10px $bl;
+		@include _transition(background-color,1s);
+		&:hover{
+			cursor: pointer;
+			background-color: $bl;
+			color: $wh;
+			@include _transition(background-color,1s);
+		}
+	}
+}

@@ -1,0 +1,16 @@
+<div id="login">
+	<form action="">
+		<div class="input-item">
+			<label for="useracc">
+				<p>Account</p>
+				<input type="text" id="useracc" [(ngModel)]="user.account" name="account">
+			</label>
+			<br/>
+			<label for="userpwd">
+				<p>Password</p>
+				<input type="password" id="userpwd" [(ngModel)]="user.password" name="password">
+			</label>
+		</div>
+		<button type="submit" (click)="submit()">Submit</button>
+	</form>
+</div>
