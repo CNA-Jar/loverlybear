@@ -1,4 +1,7 @@
 var path = require('path');
+var Dashboard = require('webpack-dashboard');
+var DashboardPlugin = require('webpack-dashboard/plugin');
+var dashboard = new Dashboard();
 
 module.exports = {
     devtool: 'source-map',
@@ -23,6 +26,9 @@ module.exports = {
     resolve: {
         extensions: ['', '.js', '.ts']
     },
+    plugins: [
+      new DashboardPlugin(dashboard.setData)
+    ],
     // 配置 webpack-dev-server
     devServer:{
         historyApiFallback: true,
