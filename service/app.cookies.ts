@@ -1,36 +1,47 @@
-import { Injectable } from '@angular/core';
-import { CookieService } from 'angular2-cookie/core';
+/*import { Component } from '@angular/core';
+import { CookieService } from 'ng2-cookies';
 
-@Injectable()
-
+@Component({
+  selector: 'app-root',
+  providers: [ CookieService ],
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
 export class BaseCookie {
+  title = 'app works!';
+  cookies: Object;
+  keys: Array<string>;
+  cName: string;
+  cValue: string;
+  rName: string;
+  checkName: string;
 
-	constructor(private _cookieService: CookieService) {}
-
-	/**
-	 * [getCookie description]
-	 * @author Yang 2017-07-19
-	 * @params  {[type]}
-	 * @return  {[type]}
-	 * @version v1.0.0
-	 * @param   {any}    _key [description]
-	 * @return  {any}         [description]
-	 */
-	getCookie(_key: any): any {
-		const { key } = _key;
-		return this._cookieService.get(key);
-	}
-
-	/**
-	 * [setCookie description]
-	 * @author Yang 2017-07-19
-	 * @params  {[type]}
-	 * @return  {[type]}
-	 * @version v1.0.0
-	 * @param   {any}    _key [description]
-	 */
-	setCookie(_key: any) {
-		const { key, value } = _key;
-		this._cookieService.put(key, value);
-	}
-}
+  constructor( public cookieService: CookieService ) {
+    this.update();
+    console.log(this.cookies);
+  }
+  update() {
+    this.cookies = this.cookieService.getAll();
+    this.keys = Object.keys(this.cookies);
+  }
+  addCookie(cName: string, cValue: string) {
+    console.log('Adding: ', cName, cValue);
+    this.cookieService.set(cName, cValue);
+    this.update();
+  }
+  removeCookie(rName: string) {
+    console.log('Removing: ', rName);
+    this.cookieService.delete(rName);
+    this.update();
+  }
+  removeAll() {
+    console.log('Removing all cookies');
+    this.cookieService.deleteAll();
+    this.update();
+  }
+  checkCookie() {
+    console.log('Checking: ', this.checkName);
+    console.log(this.cookieService.check(this.checkName));
+    window.alert('Check cookie ' + this.checkName + ' returned ' + this.cookieService.check(this.checkName));
+  }
+}*/

@@ -5,7 +5,7 @@ import { BaseService } from '../../service/app.services';
 @Injectable()
 
 export class HomeServices extends BaseService implements OnInit {
-	private _home_url: string;
+	private _url: string;
 	constructor(public http: Http) {
 		super(http);
 	}
@@ -13,6 +13,13 @@ export class HomeServices extends BaseService implements OnInit {
 	getNotice () {
 		this.url += '/system/rest/kpi_task/task/notice';
 		console.log(this.url);
+	}
+
+	getList (params = {}): Promise<any> {
+		this._url = 'system/rest/kpi_task/task/notice/1';
+		// const _params = new URLSearchParams();
+
+		return this.getRquest(this._url);
 	}
 
 	ngOnInit() {

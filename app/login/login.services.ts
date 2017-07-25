@@ -42,13 +42,13 @@ export class LoginServices extends BaseService implements OnInit {
 	 * @param   {any}          params [description]
 	 * @return  {Promise<any>}        [description]
 	 */
-	getNotice (params: any): Promise<any> {
+	/*getNotice (params: any): Promise<any> {
 		console.log(params);
 		this.url += 'system/rest/users/';
 		this.params = params;
 		
 		return this.getRquest();
-	}
+	}*/
 
 	ngOnInit() {
 		console.log(this.url);

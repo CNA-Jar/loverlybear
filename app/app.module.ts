@@ -23,8 +23,6 @@ from '@angular/common';
 
 // 服务模块
 import { HttpModule } from '@angular/http';
-import { CookieService } from 'angular2-cookie/services/cookies.service';
-import { CookieBackendService } from 'angular2-cookie/services/cookies.backend.service';
 
 // 引入浏览器模块
 import { BrowserModule } from '@angular/platform-browser';
@@ -42,10 +40,6 @@ import { BrowserModule } from '@angular/platform-browser';
   	{ 
   		provide: LocationStrategy, 
   		useClass: HashLocationStrategy 
-  	},
-  	{
-  		provide: CookieService,
-      useClass: CookieBackendService
   	}
   ],
 })

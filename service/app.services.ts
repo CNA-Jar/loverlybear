@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
+import { Cookie } from 'ng2-cookies';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
@@ -9,8 +10,10 @@ export class BaseService {
 	params: any;
 	headers: any;
 	header_options: any;
+	token: string;
 
 	constructor(public http: Http) {
+		this.token = Cookie.get('access_token') || '';
 	}
 
 	/**
@@ -23,7 +26,9 @@ export class BaseService {
 	 * @return  {any}        [description]
 	 */
 	postRquest(url: String):	any {
-		this.setHeaderOptions();
+		let header = new Headers();
+		this.setHeaderOptions(header);
+		header.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
 		const _url = this.url + url;
 		return this.http.post(_url, this.params, { headers: this.header_options})
 					.toPromise()
@@ -39,10 +44,14 @@ export class BaseService {
 	 * @version v1.0.0
 	 * @return  {any}    [description]
 	 */
-	getRquest(): any {
-		this.setHeaderOptions();
-		this.url += 1;
-		return this.http.get(this.url, {headers: this.headers})
+	getRquest(url: String): any {
+		let header = new Headers();
+		this.setHeaderOptions(header);
+		console.log(header);
+		header.append('Content-Type', 'application/json');
+		header.set('Authorization', this.token);
+		const _url = this.url + url;
+		return this.http.get(_url, { headers: this.header_options})
 					.toPromise()
 					.then(res => res.json())
 					.catch(this.handleError);
@@ -68,10 +77,12 @@ export class BaseService {
 	 * @return  {[type]}
 	 * @version v1.0.0
 	 */
-	private setHeaderOptions() {
-    this.headers = {
-    	'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+	private setHeaderOptions(headers: Headers) {
+    /*this.headers = {
+    	'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+    	'Authorization': this.token
     };
-    this.header_options = new Headers(this.headers);
+    this.header_options = new Headers(this.headers);*/
+    headers.append('Authorization', this.token);
 	}
 }

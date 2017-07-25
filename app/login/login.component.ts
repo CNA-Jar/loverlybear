@@ -1,21 +1,22 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoginServices } from './login.services';
-import { BaseCookie } from '../../service/app.cookies';
-// import { User } from '../user/user.factory';
+import { CookieService } from 'ng2-cookies';
 
 @Component({
 	selector: 'index',
 	templateUrl: './app/login/login.html',
-	providers: [ LoginServices, BaseCookie ]
+	providers: [ LoginServices, CookieService ]
 })
 
 export class Login implements OnInit{
-	// user: User;
 	user = {
 		account: '',
 		password: ''
 	}
-	constructor(private loginServices: LoginServices, private _cookie: BaseCookie) {}
+	constructor(private loginServices: LoginServices, 
+		private _cookie: CookieService, private _router: Router) {
+	}
 
 	ngOnInit() {
 		console.log('...login');
@@ -37,15 +38,13 @@ export class Login implements OnInit{
 
 		this.loginServices.login(params)
 			.then(data => {
-				const _cookie_token = {
-					key: 'access_token',
-					value: `${data.token_type} ${data.access_token}`,
-				}
-				this._cookie.setCookie(_cookie_token);
+				this._cookie.set('access_token', `${data.token_type} ${data.access_token}`);
+				this._router.navigate(['/home']);
 			})
 			.catch((err: Response) => {
+				console.log(err);
 				const { status, statusText } = err;
-				if (!statusText) {
+				if (status !== 200) {
 					console.log('接口调用失败');
 				}
 				return false;

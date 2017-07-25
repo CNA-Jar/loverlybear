@@ -20,6 +20,9 @@ export class Home implements OnInit{
 
 	ngOnInit() {
 		this.user.name = 'YYY';
+		this.homeServices.getList().then(data => {
+			console.log(data);
+		})
 		console.log('...doSomething');
 	}
 }
