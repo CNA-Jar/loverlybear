@@ -30,7 +30,7 @@ export class BaseService {
 		this.setHeaderOptions(header);
 		header.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
 		const _url = this.url + url;
-		return this.http.post(_url, this.params, { headers: this.header_options})
+		return this.http.post(_url, this.params, { headers: header})
 					.toPromise()
 					.then(res => res.json())
 					.catch(this.handleError);
@@ -51,7 +51,7 @@ export class BaseService {
 		header.append('Content-Type', 'application/json');
 		header.set('Authorization', this.token);
 		const _url = this.url + url;
-		return this.http.get(_url, { headers: this.header_options})
+		return this.http.get(_url, { headers: header})
 					.toPromise()
 					.then(res => res.json())
 					.catch(this.handleError);
