@@ -38,7 +38,7 @@ export class Login implements OnInit{
 
 		this.loginServices.login(params)
 			.then(data => {
-				this._cookie.set('access_token', `${data.token_type} ${data.access_token}`);
+				this._cookie.set('access_token', data.access_token);
 				this._router.navigate(['/home']);
 			})
 			.catch((err: Response) => {

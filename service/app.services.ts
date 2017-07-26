@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import { Cookie } from 'ng2-cookies';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 
-export class BaseService {
+export class BaseService{
 	url: string = 'http://192.168.8.107/';
 	params: any;
 	headers: any;
@@ -26,11 +26,13 @@ export class BaseService {
 	 * @return  {any}        [description]
 	 */
 	postRquest(url: String):	any {
-		let header = new Headers();
-		this.setHeaderOptions(header);
-		header.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+		let headers = new Headers();
+		headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+		const headOptions = this.setHeaderOptions(headers);
+		const options = new RequestOptions({headers: headOptions});
+		console.log(options);
 		const _url = this.url + url;
-		return this.http.post(_url, this.params, { headers: header})
+		return this.http.post(_url, this.params, options)
 					.toPromise()
 					.then(res => res.json())
 					.catch(this.handleError);
@@ -45,13 +47,13 @@ export class BaseService {
 	 * @return  {any}    [description]
 	 */
 	getRquest(url: String): any {
-		let header = new Headers();
-		this.setHeaderOptions(header);
-		console.log(header);
-		header.append('Content-Type', 'application/json');
-		header.set('Authorization', this.token);
+		let headers = new Headers();
+		headers.append('Content-Type', 'application/json;');
+		const headOptions = this.setHeaderOptions(headers);
+		const options = new RequestOptions({headers: headOptions});
+		console.log(options);
 		const _url = this.url + url;
-		return this.http.get(_url, { headers: header})
+		return this.http.get(_url, options)
 					.toPromise()
 					.then(res => res.json())
 					.catch(this.handleError);
@@ -77,12 +79,8 @@ export class BaseService {
 	 * @return  {[type]}
 	 * @version v1.0.0
 	 */
-	private setHeaderOptions(headers: Headers) {
-    /*this.headers = {
-    	'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-    	'Authorization': this.token
-    };
-    this.header_options = new Headers(this.headers);*/
-    headers.append('Authorization', this.token);
+	private setHeaderOptions(headers: Headers): any {
+		if (this.token) headers.append('Authorization', `bearer ${this.token}`);
+    return headers;
 	}
 }
