@@ -29,10 +29,8 @@ export class BaseService{
 		let headers = new Headers();
 		headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
 		const headOptions = this.setHeaderOptions(headers);
-		const options = new RequestOptions({headers: headOptions});
-		console.log(options);
 		const _url = this.url + url;
-		return this.http.post(_url, this.params, options)
+		return this.http.post(_url, this.params, { headers: headOptions })
 					.toPromise()
 					.then(res => res.json())
 					.catch(this.handleError);
@@ -50,10 +48,8 @@ export class BaseService{
 		let headers = new Headers();
 		headers.append('Content-Type', 'application/json;');
 		const headOptions = this.setHeaderOptions(headers);
-		const options = new RequestOptions({headers: headOptions});
-		console.log(options);
 		const _url = this.url + url;
-		return this.http.get(_url, options)
+		return this.http.get(_url, { headers: headOptions } )
 					.toPromise()
 					.then(res => res.json())
 					.catch(this.handleError);
@@ -80,7 +76,8 @@ export class BaseService{
 	 * @version v1.0.0
 	 */
 	private setHeaderOptions(headers: Headers): any {
-		if (this.token) headers.append('Authorization', `bearer ${this.token}`);
+		if (this.token) 
+			headers.append('Authorization', `bearer ${this.token}`);
     return headers;
 	}
 }

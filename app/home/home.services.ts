@@ -16,9 +16,7 @@ export class HomeServices extends BaseService implements OnInit {
 	}
 
 	getList (params = {}): Promise<any> {
-		this._url = 'system/rest/kpi_task/task/notice/1';
-		// const _params = new URLSearchParams();
-
+		this._url = '/system/rest/issue_cause/596';
 		return this.getRquest(this._url);
 	}
 

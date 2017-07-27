@@ -1,21 +1,20 @@
 <div>
-	<input name="name" [ngModel]="name" type="text">
+	<input name="name" [(ngModel)]="user.name" type="text">
 	<span [innerHtml]="user.name"></span>
-	{{name}}
 	<button (click)="click()">SUBMIT</button>
 	<h3>List</h3>
 	<section>
 		<div>
-			<h4 class="title">1</h4>
-			<div class="content">adsfasdf</div>
+			<h4 class="title">级别：</h4>
+			<p [innerHtml]="details.causeLevelValue" class="content"></p>
 		</div>
 		<div>
-			<h4 class="title">2</h4>
-			<div class="content">asdfasdf</div>
+			<h4 class="title">负责人：</h4>
+			<div [innerHtml]="details.assigneeValue" class="content"></div>
 		</div>
 		<div>
-			<h4 class="title">3</h4>
-			<div class="content">asdfsadfsdf</div>
+			<h4 class="title">组织：</h4>
+			<div [innerHtml]="details.orgValue" class="content"></div>
 		</div>
 	</section>
 </div>
