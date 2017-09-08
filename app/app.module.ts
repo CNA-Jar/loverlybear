@@ -13,13 +13,13 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { Home } from './home/home.component';
 import { Login } from './login/login.component';
+import { Movie } from './movie/movie.component';
 // 表单模块
 import { FormsModule } from '@angular/forms';
 // 路由模块
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './app.routers';
-import { HashLocationStrategy, LocationStrategy }
-from '@angular/common';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 // 服务模块
 import { HttpModule } from '@angular/http';
@@ -34,7 +34,7 @@ import { BrowserModule } from '@angular/platform-browser';
 	  FormsModule,
 	  RouterModule.forRoot(appRoutes) 
   ],
-  declarations: [ AppComponent, Home, Login ],
+  declarations: [ AppComponent, Home, Login, Movie ],
   bootstrap: [ AppComponent ],
   providers: [
   	{ 

@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginServices } from './login.services';
-import { CookieService } from 'ng2-cookies';
+import { Cookie } from 'ng2-cookies';
 
 @Component({
 	selector: 'index',
 	templateUrl: './app/login/login.html',
-	providers: [ LoginServices, CookieService ]
+	providers: [ LoginServices ]
 })
 
 export class Login implements OnInit{
@@ -15,7 +15,7 @@ export class Login implements OnInit{
 		password: ''
 	}
 	constructor(private loginServices: LoginServices, 
-		private _cookie: CookieService, private _router: Router) {
+		private _router: Router) {
 	}
 
 	ngOnInit() {
@@ -30,6 +30,7 @@ export class Login implements OnInit{
 	 * @version v1.0.0
 	 */
 	submit() {
+		Cookie.delete('access_token');
 
 		const params = {
 			username: this.user.account,
@@ -38,7 +39,8 @@ export class Login implements OnInit{
 
 		this.loginServices.login(params)
 			.then(data => {
-				this._cookie.set('access_token', data.access_token);
+				const { access_token } = data;
+  			Cookie.set('access_token', access_token);
 				this._router.navigate(['/home']);
 			})
 			.catch((err: Response) => {

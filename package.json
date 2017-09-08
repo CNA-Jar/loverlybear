@@ -29,6 +29,7 @@
   "devDependencies": {
     "angular-in-memory-web-api": "^0.1.17",
     "autoprefixer": "^7.1.2",
+    "bower-webpack-plugin": "^0.1.9",
     "css-loader": "^0.28.4",
     "ejs-loader": "^0.3.0",
     "file-loader": "^0.11.2",

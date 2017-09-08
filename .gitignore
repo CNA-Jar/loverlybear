@@ -1,3 +1,7 @@
-.sass-cache
-*.css.map
-node_modules
+/node_modules
+/bower_components
+/.sass-cache
+/.idea
+/*.iml
+/dist
+/doc

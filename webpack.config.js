@@ -1,13 +1,16 @@
 var path = require('path');
+var webpack = require("webpack");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var WebpackMd5Hash = require('webpack-md5-hash');
-var Dashboard = require('webpack-dashboard');
+var BowerWebpackPlugin = require("bower-webpack-plugin");
+/*var Dashboard = require('webpack-dashboard');
 var DashboardPlugin = require('webpack-dashboard/plugin');
-var dashboard = new Dashboard();
-
+var dashboard = new Dashboard();*/
 module.exports = {
     devtool: 'source-map',
-    entry: './main.ts',
+    entry: {
+        main: './main.ts',
+    },
     output: {
         path: path.resolve(__dirname, 'dist'),
         publicPath: '/dist/',
@@ -25,14 +28,18 @@ module.exports = {
         ],
     },
     resolve: {
-        extensions: ['', '.js', '.ts']
+        extensions: ['', '.js', '.ts'],
+        modulesDirectories: ["node_modules", "bower_components"]
     },
     plugins:[
         new WebpackMd5Hash(),
         new HtmlWebpackPlugin({
             hash: true,
         }),
-        new DashboardPlugin(dashboard.setData)
+        new webpack.ResolverPlugin(
+            new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin(".bower.json", ["main"])
+        ),
+        // new DashboardPlugin(dashboard.setData)
     ],
     devServer:{
         historyApiFallback: true,

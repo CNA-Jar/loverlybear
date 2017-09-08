@@ -28,9 +28,10 @@ export class LoginServices extends BaseService implements OnInit {
     _params.set('scope', 'read+write');
     _params.set('client_secret', 'mySecretOAuthSecret');
     _params.set('client_id', 'authserverapp');
+    console.log(_params);
 		this.params = _params;
 
-		return this.postRquest(this._url);
+		return this.postRquest(this._url, 'application/x-www-form-urlencoded; charset=UTF-8');
 	}
 
 	/**

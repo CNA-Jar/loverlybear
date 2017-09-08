@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import { Cookie } from 'ng2-cookies';
 import 'rxjs/add/operator/toPromise';
 
@@ -25,9 +25,10 @@ export class BaseService{
 	 * @param   {String} url [description]
 	 * @return  {any}        [description]
 	 */
-	postRquest(url: String):	any {
+	postRquest(url: String, contentType = 'application/json;'):	any {
+		console.log(contentType);
 		let headers = new Headers();
-		headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+		headers.append('Content-Type', contentType);
 		const headOptions = this.setHeaderOptions(headers);
 		const _url = this.url + url;
 		return this.http.post(_url, this.params, { headers: headOptions })
@@ -77,7 +78,7 @@ export class BaseService{
 	 */
 	private setHeaderOptions(headers: Headers): any {
 		if (this.token) 
-			headers.append('Authorization', `bearer ${this.token}`);
+			headers.append('Authorization', `Bearer ${this.token}`);
     return headers;
 	}
 }
