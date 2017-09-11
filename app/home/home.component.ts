@@ -10,21 +10,29 @@ import { HomeServices } from './home.services';
 export class Home implements OnInit{
 	user = { name: ''};
 	details = {};
+	userList: any;
+	public filterQuery = '';
+  public rowsOnPage = 10;
+  public sortBy = 'name';
+  public sortOrder = 'asc';
 	constructor(private homeServices: HomeServices) {
 		console.log('..create');
 	}
 
 	click() {
 		console.log(this.user.name);
-		// this.homeServices.getNotice();
 	}
 
 	ngOnInit() {
-		// this.user.name = 'YYY';
-		this.homeServices.getList().then(data => {
+		let params = {
+		  "pagingTool": {
+		    "currentPage": 0,
+		    "pageSize": -1
+		  }
+		};
+		this.homeServices.getUserList(params).then(data => {
 			console.log(data);
-			this.details = data;
+			this.userList = data;
 		})
-		console.log('...doSomething');
 	}
 }

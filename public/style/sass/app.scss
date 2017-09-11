@@ -4,28 +4,30 @@
 @import url(http://fonts.googlefonts.net/css?family=Ubuntu&subset=latin,latin-ext);
 
 .container{
-	#__ul{
-		background-color: $nav_bg;
-		@include boxHeight(40px);
-		li{
-			float: left;
-			width: 25%;
-			text-align: center;
-			@include _defaultLi();
-			@include _transition(background-color,1s);
-			&:hover{
-				&>a._reset{
-					color: $wh;
-				}
-				background-color: $bl;
+	@at-root{
+		#__ul{
+			background-color: $nav_bg;
+			@include boxHeight(40px);
+			li{
+				float: left;
+				width: 25%;
+				text-align: center;
+				@include _defaultLi();
 				@include _transition(background-color,1s);
-			}
-			i.fa{
-				margin-right: 10px;
-			}
-			&>a._reset{
-		    color: $bl;
-		    text-decoration: none;
+				&:hover{
+					&>a._reset{
+						color: $wh;
+					}
+					background-color: $bl;
+					@include _transition(background-color,1s);
+				}
+				i.fa{
+					margin-right: 10px;
+				}
+				&>a._reset{
+			    color: $bl;
+			    text-decoration: none;
+				}
 			}
 		}
 	}
@@ -48,3 +50,4 @@
 }
 
 @import 'login';
+@import 'home';

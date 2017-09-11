@@ -9,11 +9,19 @@ import 'font-awesome-webpack';
 // 引入NgModule装饰器
 import { NgModule } from '@angular/core';
 
+//ngRx
+import { StoreModule } from '@ngrx/store';
+
 // 导入组件模块
 import { AppComponent } from './app.component';
 import { Home } from './home/home.component';
 import { Login } from './login/login.component';
 import { Movie } from './movie/movie.component';
+
+//angular2-datatable
+import { DataTableModule } from 'angular2-datatable';
+import { DataFilterPipe } from '../service/dataFilter';
+
 // 表单模块
 import { FormsModule } from '@angular/forms';
 // 路由模块
@@ -32,9 +40,10 @@ import { BrowserModule } from '@angular/platform-browser';
 	  BrowserModule, 
 	  HttpModule, 
 	  FormsModule,
+    DataTableModule,
 	  RouterModule.forRoot(appRoutes) 
   ],
-  declarations: [ AppComponent, Home, Login, Movie ],
+  declarations: [ AppComponent, DataFilterPipe, Home, Login, Movie ],
   bootstrap: [ AppComponent ],
   providers: [
   	{ 

@@ -87,6 +87,9 @@ ins,a {
 a:focus,*:focus {
     outline:none;
 }
+
+.pd0{padding: 0 !important;}
+
 /* 清除浮动 */
 .clearfix:before,.clearfix:after {
     content:"";

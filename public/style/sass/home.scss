@@ -1,0 +1,16 @@
+#home{
+	ul{
+		li{
+			width: 100%;
+			&:hover{
+				background-color: #666;
+				color: $wh;
+			}
+			&> p > span{
+				display: inline-block;
+				float: left;
+				width: 50%;
+			}
+		}
+	}
+}

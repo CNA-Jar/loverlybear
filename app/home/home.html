@@ -1,20 +1,54 @@
-<div>
-	<input name="name" [(ngModel)]="user.name" type="text">
-	<span [innerHtml]="user.name"></span>
-	<button (click)="click()">SUBMIT</button>
-	<h3>List</h3>
+<!-- <div id="home">
 	<section>
-		<div>
-			<h4 class="title">级别：</h4>
-			<p [innerHtml]="details.causeLevelValue" class="content"></p>
-		</div>
-		<div>
-			<h4 class="title">负责人：</h4>
-			<div [innerHtml]="details.assigneeValue" class="content"></div>
-		</div>
-		<div>
-			<h4 class="title">组织：</h4>
-			<div [innerHtml]="details.orgValue" class="content"></div>
-		</div>
+		<ul>
+			<li *ngFor="let user of userList">
+				<p class="clearfix">
+					<span>UserName:<strong [innerHtml]="user.role_name"></strong></span>
+					<span>Company:<strong [innerHtml]="user.org_names"></strong></span>
+				</p>
+			</li>
+		</ul>
 	</section>
+</div> -->
+<div id="home">
+  <div class="col-xs-3">
+      <label class="label-control">每页显示行数</label>
+      <select class="form-control input-sm pd0" [(ngModel)]="rowsOnPage">
+          <option [ngValue]="5">5</option>
+          <option [ngValue]="10">10</option>
+          <option [ngValue]="15">15</option>
+      </select>
+  </div>
+	<table class="table table-striped" [mfData]="userList | dataFilter : filterQuery" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage"  [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+    <thead>
+	    <tr>
+	        <th style="width: 50%">
+	            <mfDefaultSorter by="name">Name</mfDefaultSorter>
+	        </th>
+	        <th style="width: 50%">
+	            <mfDefaultSorter by="company">Company</mfDefaultSorter>
+	        </th>
+	    </tr>
+	    <tr>
+		    <th colspan="5">
+		        Filter by name:
+		        <input class="form-control" [(ngModel)]="filterQuery"/>
+		    </th>
+			</tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of mf.data">
+        <td>{{user.role_name}}</td>
+        <td>{{user.org_names}}</td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="4">
+            <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+        </td>
+    </tr>
+    </tfoot>
+	</table>
+	{{filterQuery}}
 </div>

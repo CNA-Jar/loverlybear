@@ -20,6 +20,12 @@ export class HomeServices extends BaseService implements OnInit {
 		return this.getRquest(this._url);
 	}
 
+	getUserList(params = {}): Promise<any> {
+		this.params = params;
+		this._url = 'system/rest/users/list';
+		return this.postRquest(this._url);
+	}
+
 	ngOnInit() {
 		console.log(this.url);
 	}
