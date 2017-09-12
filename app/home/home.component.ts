@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, Injectable } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { HomeServices } from './home.services';
 
 @Component({
@@ -15,12 +16,14 @@ export class Home implements OnInit{
   public rowsOnPage = 10;
   public sortBy = 'name';
   public sortOrder = 'asc';
-	constructor(private homeServices: HomeServices) {
+	constructor(private homeServices: HomeServices, private _router: Router) {
 		console.log('..create');
 	}
 
-	click() {
-		console.log(this.user.name);
+	click(id = '') {
+		const userId = id;
+		console.log(userId);
+		this._router.navigate(['/detail', userId]);
 	}
 
 	ngOnInit() {

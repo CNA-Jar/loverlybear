@@ -15,6 +15,7 @@ import { StoreModule } from '@ngrx/store';
 // 导入组件模块
 import { AppComponent } from './app.component';
 import { Home } from './home/home.component';
+import { Detail } from './home/home-detail/homeDetail';
 import { Login } from './login/login.component';
 import { Movie } from './movie/movie.component';
 
@@ -40,10 +41,11 @@ import { BrowserModule } from '@angular/platform-browser';
 	  BrowserModule, 
 	  HttpModule, 
 	  FormsModule,
+    // StoreModule,
     DataTableModule,
 	  RouterModule.forRoot(appRoutes) 
   ],
-  declarations: [ AppComponent, DataFilterPipe, Home, Login, Movie ],
+  declarations: [ AppComponent, DataFilterPipe, Home, Detail, Login, Movie ],
   bootstrap: [ AppComponent ],
   providers: [
   	{ 
