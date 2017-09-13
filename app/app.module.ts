@@ -11,6 +11,7 @@ import { NgModule } from '@angular/core';
 
 //ngRx
 import { StoreModule } from '@ngrx/store';
+import { counterReducer } from '../store/counter';
 
 // 导入组件模块
 import { AppComponent } from './app.component';
@@ -41,9 +42,9 @@ import { BrowserModule } from '@angular/platform-browser';
 	  BrowserModule, 
 	  HttpModule, 
 	  FormsModule,
-    // StoreModule,
     DataTableModule,
-	  RouterModule.forRoot(appRoutes) 
+	  RouterModule.forRoot(appRoutes),
+    StoreModule.provideStore({ counter: counterReducer}),
   ],
   declarations: [ AppComponent, DataFilterPipe, Home, Detail, Login, Movie ],
   bootstrap: [ AppComponent ],
